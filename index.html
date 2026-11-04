@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TeaMatch — ค้นพบชาที่ใช่สำหรับคุณ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <div class="storybook-frame">
+
+      <div class="corner corner-tl">✿</div>
+      <div class="corner corner-tr">☾</div>
+      <div class="corner corner-bl">✦</div>
+      <div class="corner corner-br">✿</div>
+
+      <div class="top-garland">✿ ───── ❀ ── ♡ ── ❀ ───── ✿</div>
+
+      <section id="cover" class="screen cover-screen active">
+        <header class="brand">
+          <h1>TeaMatch</h1>
+          <p class="tagline">ค้นพบตัวตนของคุณ ผ่านเรื่องราวของถ้วยชา</p>
+        </header>
+
+        <div class="hero-art" aria-label="ภาพประกอบถ้วยชาดอกไม้">
+          <div class="sparkle sparkle-one">✧</div>
+          <div class="sparkle sparkle-two">✦</div>
+          <div class="sparkle sparkle-three">✧</div>
+
+          <svg viewBox="0 0 360 310" role="img" aria-label="ถ้วยชาลายดอกไม้บนจานรอง" class="teacup-svg">
+            <ellipse cx="180" cy="264" rx="117" ry="15" fill="#829a6b" opacity=".18"/>
+            <path d="M105 225 Q180 205 255 225 L290 247 Q180 286 70 247 Z" fill="#f9edcf" stroke="#a17a43" stroke-width="3"/>
+            <ellipse cx="180" cy="239" rx="108" ry="25" fill="#fff9e9" stroke="#b88d4c" stroke-width="2"/>
+            <ellipse cx="180" cy="238" rx="86" ry="16" fill="#f8e8d2" stroke="#d5b879" stroke-width="2"/>
+            <path d="M110 105 Q180 125 250 105 L233 207 Q180 240 127 207 Z" fill="#fff8e9" stroke="#b38a4c" stroke-width="3"/>
+            <ellipse cx="180" cy="107" rx="71" ry="18" fill="#fffdf3" stroke="#b38a4c" stroke-width="3"/>
+            <ellipse cx="180" cy="108" rx="62" ry="12" fill="#e8d4b4" opacity=".6"/>
+            <path d="M248 128 C308 108 302 190 239 180" fill="none" stroke="#b38a4c" stroke-width="13" stroke-linecap="round"/>
+            <path d="M248 128 C295 117 291 176 241 170" fill="none" stroke="#fff8e9" stroke-width="7" stroke-linecap="round"/>
+            <path d="M130 209 Q180 225 230 209" fill="none" stroke="#b38a4c" stroke-width="3"/>
+            <g stroke="#67865c" stroke-width="2">
+              <path d="M150 166 Q128 150 123 171 Q139 180 150 166" fill="#a9c78d"/>
+              <path d="M205 181 Q228 162 235 182 Q218 195 205 181" fill="#a9c78d"/>
+              <path d="M176 191 Q159 177 155 195 Q166 205 176 191" fill="#a9c78d"/>
+            </g>
+            <g transform="translate(155 157)">
+              <g fill="#d98798" stroke="#bd6c7b" stroke-width="1.5">
+                <ellipse cx="0" cy="-10" rx="8" ry="12"/>
+                <ellipse cx="10" cy="-2" rx="8" ry="12" transform="rotate(50 10 -2)"/>
+                <ellipse cx="-10" cy="-2" rx="8" ry="12" transform="rotate(-50 -10 -2)"/>
+                <ellipse cx="0" cy="5" rx="8" ry="10"/>
+              </g>
+              <circle r="5" fill="#e9bd6d"/>
+            </g>
+            <g transform="translate(211 149) scale(.72)">
+              <g fill="#e6a2ad" stroke="#bd6c7b" stroke-width="1.5">
+                <ellipse cx="0" cy="-10" rx="8" ry="12"/>
+                <ellipse cx="10" cy="-2" rx="8" ry="12" transform="rotate(50 10 -2)"/>
+                <ellipse cx="-10" cy="-2" rx="8" ry="12" transform="rotate(-50 -10 -2)"/>
+                <ellipse cx="0" cy="5" rx="8" ry="10"/>
+              </g>
+              <circle r="5" fill="#e9bd6d"/>
+            </g>
+            <g transform="translate(185 181) scale(.55)">
+              <g fill="#efb8bd" stroke="#bd6c7b" stroke-width="1.5">
+                <ellipse cx="0" cy="-10" rx="8" ry="12"/>
+                <ellipse cx="10" cy="-2" rx="8" ry="12" transform="rotate(50 10 -2)"/>
+                <ellipse cx="-10" cy="-2" rx="8" ry="12" transform="rotate(-50 -10 -2)"/>
+                <ellipse cx="0" cy="5" rx="8" ry="10"/>
+              </g>
+              <circle r="5" fill="#e9bd6d"/>
+            </g>
+            <path d="M166 82 C146 65 181 57 163 35 M188 81 C209 62 177 51 198 28" fill="none" stroke="#92b783" stroke-width="4" stroke-linecap="round" opacity=".9"/>
+          </svg>
+
+          <div class="flower flower-left">❀</div>
+          <div class="flower flower-right">✿</div>
+        </div>
+
+        <div class="cover-action">
+          <button class="primary-button" onclick="showScreen('welcome')">
+            เริ่มต้นค้นหาชาที่ใช่สำหรับคุณ <span>→</span>
+          </button>
+          <p class="microcopy">16 คำถาม · ค้นพบบุคลิกภาพของคุณ</p>
+          <div class="tiny-heart">— ♡ —</div>
+        </div>
+      </section>
+
+      <section id="welcome" class="screen welcome-screen">
+        <div class="welcome-illustration" aria-hidden="true">☕ ✿</div>
+        <p class="eyebrow">A LITTLE JOURNEY OF YOU</p>
+        <h2>ยินดีต้อนรับสู่<br><span>โลกของ TeaMatch</span></h2>
+        <p class="welcome-description">
+          ทุกคนมีเรื่องราวเป็นของตัวเอง<br>
+          มารู้จักตัวคุณผ่านคำถามเล็ก ๆ<br>
+          แล้วค้นหาถ้วยชาที่เข้ากับตัวตนของคุณกัน
+        </p>
+
+        <div class="note-card">
+          <span>✿</span>
+          <p>ตอบตามความเป็นตัวคุณ ไม่มีคำตอบถูกหรือผิด</p>
+        </div>
+
+        <button class="primary-button" onclick="showScreen('intro')">
+          ไปกันเลย <span>→</span>
+        </button>
+        <button class="text-button" onclick="showScreen('cover')">
+          ← กลับหน้าแรก
+        </button>
+      </section>
+
+      <section id="intro" class="screen welcome-screen">
+        <div class="welcome-illustration" aria-hidden="true">🌿</div>
+        <p class="eyebrow">BEFORE WE BEGIN</p>
+        <h2>เตรียมตัวให้พร้อม<br><span>แล้วค่อย ๆ ค้นพบตัวเอง</span></h2>
+        <p class="welcome-description">
+          แบบทดสอบมีทั้งหมด 16 คำถาม<br>
+          เลือกคำตอบที่ใกล้เคียงกับคุณที่สุด<br>
+          แล้วเราจะพาคุณไปพบกับ TeaMatch ของคุณ
+        </p>
+        <div class="note-card">
+          <span>♡</span>
+          <p>คำตอบของคุณจะใช้เพื่อประมวลผลแบบทดสอบแบบไม่ระบุตัวตน</p>
+        </div>
+        <button class="primary-button" onclick="startQuiz()">
+          เริ่มทำแบบทดสอบ <span>→</span>
+        </button>
+        <button class="text-button" onclick="showScreen('welcome')">
+          ← ย้อนกลับ
+        </button>
+      </section>
+
+      <section id="quiz" class="screen quiz-screen">
+        <div class="quiz-heading">
+          <p class="eyebrow">YOUR LITTLE TEA JOURNEY</p>
+          <h2>มาทำความรู้จัก<br><span>ตัวคุณกันเถอะ</span></h2>
+        </div>
+
+        <div class="progress-area">
+          <div class="progress-label">
+            <span id="questionCounter">คำถามที่ 1 / 16</span>
+            <span id="progressPercent">6%</span>
+          </div>
+          <div class="progress-track" role="progressbar" aria-label="ความคืบหน้าของแบบทดสอบ" aria-valuemin="0" aria-valuemax="16" aria-valuenow="1" id="progressTrack">
+            <div id="progressFill" class="progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-flower" aria-hidden="true">✿</div>
+          <p id="questionCategory" class="question-category">ABOUT YOURSELF</p>
+          <h3 id="questionText">คำถามจะแสดงตรงนี้</h3>
+          <p class="question-hint">เลือกคำตอบที่ใกล้เคียงกับคุณที่สุดนะ</p>
+          <div id="answerOptions" class="answer-options"></div>
+        </div>
+
+        <div class="quiz-navigation">
+          <button id="backButton" class="nav-button" onclick="previousQuestion()">
+            ← ย้อนกลับ
+          </button>
+          <button id="nextButton" class="primary-button" onclick="nextQuestion()" disabled>
+            ถัดไป →
+          </button>
+        </div>
+
+        <p class="quiz-footnote">♡ ไม่มีคำตอบถูกหรือผิด ตอบตามความเป็นคุณได้เลย ♡</p>
+      </section>
+
+      <section id="review" class="screen welcome-screen review-screen">
+        <div class="welcome-illustration" aria-hidden="true">🌷</div>
+        <p class="eyebrow">YOUR ANSWERS</p>
+        <h2>เก่งมากเลย!<br><span>มาตรวจคำตอบกัน</span></h2>
+        <p class="welcome-description">
+          คุณตอบครบทั้ง 16 ข้อแล้ว<br>
+          ลองตรวจดูคำตอบก่อนเดินทางไปสู่ผลลัพธ์ของคุณ
+        </p>
+
+        <div id="reviewList" class="review-list"></div>
+
+        <button class="primary-button" onclick="finishReview()">
+          ยืนยันคำตอบ <span>→</span>
+        </button>
+        <button class="text-button" onclick="editLastAnswer()">
+          ← กลับไปแก้ไขคำตอบ
+        </button>
+        <p class="quiz-footnote">
+          ขั้นนี้ยังไม่คำนวณคะแนนและยังไม่ได้บันทึกลงฐานข้อมูล
+        </p>
+      </section>
+
+      <section id="result" class="screen result-screen">
+        <p class="eyebrow">YOUR TEA MATCH</p>
+        <h2 class="result-heading">เรื่องราวของคุณ<br><span>กำลังจะเริ่มต้น</span></h2>
+        <p class="result-intro">
+          ทุกตัวตนมีความพิเศษ และนี่คือถ้วยชาและเรื่องราวเฉพาะของคุณ
+        </p>
+
+        <div id="shareCard" class="share-card-image-wrapper">
+          <img id="resultImage" src="" alt="TeaMatch Result Card" class="result-card-img" />
+        </div>
+
+        <div class="result-status">
+          <span>✿</span>
+          <p id="resultStatus">กำลังประมวลผลข้อมูลของคุณ...</p>
+        </div>
+
+        <div class="result-actions">
+          <button class="primary-button" onclick="shareToInstagram()">
+            📸 แชร์ไป IG Story / บันทึกรูป ↗
+          </button>
+          <button class="secondary-button" onclick="showScreen('feedback')">
+            ทำแบบประเมิน <span>→</span>
+          </button>
+        </div>
+
+        <button class="text-button" onclick="showScreen('cover')">
+          กลับหน้าแรก
+        </button>
+      </section>
+
+      <section id="feedback" class="screen feedback-screen">
+        <div class="welcome-illustration" aria-hidden="true">💌</div>
+        <p class="eyebrow">YOUR THOUGHTS MATTER</p>
+        <h2>ช่วยบอกเราหน่อยนะ<br><span>ว่า TeaMatch เป็นอย่างไรบ้าง</span></h2>
+        <p class="welcome-description">
+          ขอบคุณที่ร่วมเดินทางไปกับเรา<br>
+          แบบประเมินสั้น ๆ นี้จะช่วยให้เราพัฒนา TeaMatch ให้ดียิ่งขึ้น
+        </p>
+
+        <div class="form-frame">
+          <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSd4a4oK0yr6idykmGYvuPPtzDYIORsfXgK6IgExWlPcsx0ZFA/viewform?embedded=true"
+            title="แบบประเมิน TeaMatch"
+            width="100%"
+            height="650"
+            frameborder="0"
+            marginheight="0"
+            marginwidth="0"
+            loading="lazy"
+          >กำลังโหลดแบบประเมิน…</iframe>
+        </div>
+
+        <button class="text-button" onclick="showScreen('result')">
+          ← กลับหน้าผลลัพธ์
+        </button>
+      </section>
+
+      <div id="assessmentPopup" class="assessment-overlay" role="dialog" aria-modal="true" aria-labelledby="assessmentTitle" style="display: none;">
+        <div class="assessment-modal">
+          <div class="assessment-icon">🍵</div>
+          <h2 id="assessmentTitle">ขอความร่วมมือทำแบบประเมิน ♡</h2>
+          <p>
+            ขอบคุณที่ร่วมเดินทางไปกับ TeaMatch นะคะ
+            ก่อนจบกิจกรรม รบกวนช่วยทำแบบประเมินสั้น ๆ
+            เพื่อให้เรานำความคิดเห็นของคุณไปพัฒนา TeaMatch ให้ดียิ่งขึ้นค่ะ
+          </p>
+          <button class="primary-button" onclick="goToRequiredAssessment()">
+            ทำแบบประเมิน →
+          </button>
+        </div>
+      </div>
+
+      <div class="bottom-garland">✿ ───── ♡ ── ❀ ── ♡ ───── ✿</div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

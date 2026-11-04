@@ -383,7 +383,7 @@ async function saveCurrentTeaMatchResult(result) {
   const response = await fetch(GAS_WEB_APP_URL, {
     method: 'POST',
     headers: {
-      'Content-Type': 'text/plain;charset=utf-8', // ต้องใช้ text/plain เท่านั้นเพื่อเลี่ยงปัญหา CORS
+      'Content-Type': 'text/plain;charset=utf-8', // 👈 ต้องใช้ text/plain เท่านั้น
     },
     body: JSON.stringify(payload)
   });

@@ -170,6 +170,17 @@ const personalityBonus = [
 ];
 
 const herbByOption = { 0: 'ใบเตย', 1: 'กระเจี๊ยบ', 2: 'ขิง', 3: 'ตะไคร้' };
+// 🆕 ออบเจ็กต์จับคู่ Personality กับ ชาสมุนไพรตามภาพ
+const teaHerbMap = {
+  Restorer: 'ชาใบเตยกับใบบัวบก',
+  Balanced: 'ชาใบบัวบกกับอัญชัน',
+  Explorer: 'ชาตะไคร้กับขิง',
+  GoGetter: 'ชาขิงกับขมิ้นชัน',
+  Vibrant: 'ชากระเจี๊ยบแดงกับใบเตย',
+  Creative: 'ชาอัญชันกับใบเตย',
+  Gentle: 'ชาเก๊กฮวยกับใบเตย',
+  Grounded: 'ชาขมิ้นชันกับขิงและตะไคร้'
+};
 
 function calculateTeaMatch(answers) {
   if (!Array.isArray(answers) || answers.length !== teaQuestions.length || answers.some(a => !Number.isInteger(a) || a < 0 || a > 3)) {
@@ -186,7 +197,9 @@ function calculateTeaMatch(answers) {
 
   const highestScore = Math.max(...Object.values(scores));
   const winner = tieBreakOrder.find(key => scores[key] === highestScore);
-  const herbPreference = herbByOption[answers[11]];
+  
+  // 🆕 ดึงชื่อชาสมุนไพรตาม Personality ผลลัพธ์
+  const herbPreference = teaHerbMap[winner] || 'ชาสมุนไพรสูตรพิเศษ';
 
   return {
     personalityKey: winner,

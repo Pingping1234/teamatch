@@ -5,20 +5,23 @@ let userData = {
   email: ''
 };
 
+// 🟢 แก้ไข: ใส่ event.preventDefault() ป้องกันหน้าเว็บรีเฟรชตอนกดส่งชื่อ
 function saveUserInfo(event) {
-  event.preventDefault();
+  if (event) event.preventDefault();
+  
   const nameInput = document.getElementById('userName').value.trim();
   const emailInput = document.getElementById('userEmail').value.trim();
 
   if (!nameInput || !emailInput) {
     alert('กรุณากรอกชื่อและอีเมลให้ครบถ้วน');
-    return;
+    return false;
   }
 
   userData.name = nameInput;
   userData.email = emailInput;
 
   showScreen('intro');
+  return false;
 }
 
 const teaQuestions = [
@@ -169,8 +172,7 @@ const personalityBonus = [
   [{Grounded:2, Balanced:2}, {Balanced:2, Gentle:1}, {Explorer:2, Creative:1}, {Gentle:2, Creative:1}]
 ];
 
-const herbByOption = { 0: 'ใบเตย', 1: 'กระเจี๊ยบ', 2: 'ขิง', 3: 'ตะไคร้' };
-// 🆕 ออบเจ็กต์จับคู่ Personality กับ ชาสมุนไพรตามภาพ
+// 🟢 จับคู่ Personality กับ ชาสมุนไพร
 const teaHerbMap = {
   Restorer: 'ชาใบเตยกับใบบัวบก',
   Balanced: 'ชาใบบัวบกกับอัญชัน',
@@ -198,7 +200,7 @@ function calculateTeaMatch(answers) {
   const highestScore = Math.max(...Object.values(scores));
   const winner = tieBreakOrder.find(key => scores[key] === highestScore);
   
-  // 🆕 ดึงชื่อชาสมุนไพรตาม Personality ผลลัพธ์
+  // 🟢 ดึงชาตาม Personality
   const herbPreference = teaHerbMap[winner] || 'ชาสมุนไพรสูตรพิเศษ';
 
   return {
@@ -293,7 +295,7 @@ function previousQuestion() {
     currentQuestion--;
     renderQuestion();
   } else {
-    showScreen('intro');
+    showScreen('user-info'); // 🟢 ย้อนกลับมาหน้ากรอกชื่อถูกต้อง
   }
 }
 

@@ -1,5 +1,5 @@
 // ✅ ใส่ Web App URL ของ Apps Script เรียบร้อยแล้ว
-const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzKKtJsHqhVaUTBLEYtWVZQvEmfz3tUTBSMmf_c4KZdaJD7ynhD1s_fA77PabbKEJvWwg/exec';
+const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyq5kvm7mIodHts0ImwrT89bxX3QIBVgbh8vL0Iti57IRLKf2Ocvr7Cm_FdXAu3SNcjYg/exec';
 
 const teaQuestions = [
   {

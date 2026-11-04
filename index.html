@@ -103,11 +103,39 @@
           <p>ตอบตามความเป็นตัวคุณ ไม่มีคำตอบถูกหรือผิด</p>
         </div>
 
-        <button class="primary-button" onclick="showScreen('intro')">
+        <button class="primary-button" onclick="showScreen('user-info')">
           ไปกันเลย <span>→</span>
         </button>
         <button class="text-button" onclick="showScreen('cover')">
           ← กลับหน้าแรก
+        </button>
+      </section>
+
+      <!-- 🆕 หน้ากรอกชื่อและอีเมล -->
+      <section id="user-info" class="screen welcome-screen">
+        <div class="welcome-illustration" aria-hidden="true">📝</div>
+        <p class="eyebrow">ABOUT YOU</p>
+        <h2>ยินดีที่ได้รู้จัก<br><span>กรอกข้อมูลของคุณ</span></h2>
+        <p class="welcome-description">
+          กรอกชื่อและอีเมลเพื่อรับผลลัพธ์การค้นหาชาเฉพาะตัวคุณ
+        </p>
+        
+        <form id="userInfoForm" onsubmit="saveUserInfo(event)" class="user-info-form">
+          <div class="input-group">
+            <label for="userName">ชื่อ / ชื่อเล่น <span class="required">*</span></label>
+            <input type="text" id="userName" placeholder="ระบุชื่อของคุณ" required />
+          </div>
+          <div class="input-group">
+            <label for="userEmail">อีเมล <span class="required">*</span></label>
+            <input type="email" id="userEmail" placeholder="example@email.com" required />
+          </div>
+          <button type="submit" class="primary-button" style="margin-top: 15px;">
+            ถัดไป <span>→</span>
+          </button>
+        </form>
+
+        <button class="text-button" onclick="showScreen('welcome')">
+          ← ย้อนกลับ
         </button>
       </section>
 
@@ -127,7 +155,7 @@
         <button class="primary-button" onclick="startQuiz()">
           เริ่มทำแบบทดสอบ <span>→</span>
         </button>
-        <button class="text-button" onclick="showScreen('welcome')">
+        <button class="text-button" onclick="showScreen('user-info')">
           ← ย้อนกลับ
         </button>
       </section>

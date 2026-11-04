@@ -1,5 +1,25 @@
-// ✅ ใส่ Web App URL ของ Apps Script เรียบร้อยแล้ว
-const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyq5kvm7mIodHts0ImwrT89bxX3QIBVgbh8vL0Iti57IRLKf2Ocvr7Cm_FdXAu3SNcjYg/exec';
+const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzKKtJsHqhVaUTBLEYtWVZQvEmfz3tUTBSMmf_c4KZdaJD7ynhD1s_fA77PabbKEJvWwg/exec';
+
+let userData = {
+  name: '',
+  email: ''
+};
+
+function saveUserInfo(event) {
+  event.preventDefault();
+  const nameInput = document.getElementById('userName').value.trim();
+  const emailInput = document.getElementById('userEmail').value.trim();
+
+  if (!nameInput || !emailInput) {
+    alert('กรุณากรอกชื่อและอีเมลให้ครบถ้วน');
+    return;
+  }
+
+  userData.name = nameInput;
+  userData.email = emailInput;
+
+  showScreen('intro');
+}
 
 const teaQuestions = [
   {
@@ -374,6 +394,8 @@ async function shareToInstagram() {
 
 async function saveCurrentTeaMatchResult(result) {
   const payload = {
+    name: userData.name,
+    email: userData.email,
     answers: teaAnswers,
     scores: result.scores,
     personalityKey: result.personalityKey,
@@ -383,7 +405,7 @@ async function saveCurrentTeaMatchResult(result) {
   const response = await fetch(GAS_WEB_APP_URL, {
     method: 'POST',
     headers: {
-      'Content-Type': 'text/plain;charset=utf-8', // 👈 ต้องใช้ text/plain เท่านั้น
+      'Content-Type': 'text/plain;charset=utf-8',
     },
     body: JSON.stringify(payload)
   });
@@ -396,8 +418,6 @@ async function saveCurrentTeaMatchResult(result) {
 
   return saved;
 }
-
-
 
 function showAssessmentPopup() {
   const popup = document.getElementById('assessmentPopup');

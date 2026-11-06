@@ -48,7 +48,7 @@ const teaQuestions = [
   {
     category: 'PERSONALITY · 05',
     question: 'เมื่อมี Deadline คุณมักทำอย่างไร?',
-    options: ['เริ่มทำตั้งแต่เนิ่น ๆ', 'ทำตามกิจวัตรที่วางไว้', 'เร่งทำอย่างเต็มที่ใกล้กำหนด', 'คิดหาวิธีแก้ปัญหาอย่างสร้างสรรค์']
+    options: ['เริ่มลงมือทำทันทีตั้งแต่เนิ่น ๆ', 'วางแผนและค่อย ๆ ทำตามตารางที่จัดไว้', 'รอนึกไอเดียออก แล้วค่อยเร่งทำใกล้ถึงกำหนด', 'คิดหาวิธีแก้ปัญหาอย่างสร้างสรรค์']
   },
   {
     category: 'PERSONALITY · 06',
@@ -78,12 +78,12 @@ const teaQuestions = [
   {
     category: 'LIFESTYLE · 05',
     question: 'วันปกติของคุณมีลักษณะอย่างไร?',
-    options: ['ยุ่งและมีสิ่งที่ต้องทำตลอด', 'มีโครงสร้างและคาดเดาได้', 'ยืดหยุ่นและเปลี่ยนแปลงตลอด', 'ดำเนินไปอย่างช้า ๆ และผ่อนคลาย']
+    options: ['ยุ่งและมีสิ่งที่ต้องทำตลอด', 'เป็นระเบียบเรียบร้อย ทำตามแผน', 'ยืดหยุ่นและเปลี่ยนแปลงตลอด', 'ดำเนินไปอย่างช้า ๆ และผ่อนคลาย']
   },
   {
     category: 'TEA PREFERENCE · 01',
     question: 'รสชาติแบบไหนฟังดูน่าลองที่สุด?',
-    options: ['หอมอ่อน ๆ', 'สดชื่นและเปรี้ยวเล็กน้อย', 'อุ่นและมีรสเผ็ดจากเครื่องเทศ', 'สดชื่นและมีกลิ่นสมุนไพร']
+    options: ['กลมกล่อมและหอมอ่อน ๆ', 'สดชื่นและเปรี้ยวเล็กน้อย', 'อุ่นและมีรสเผ็ดจากเครื่องเทศ', 'สดชื่นและมีกลิ่นสมุนไพร']
   },
   {
     category: 'TEA PREFERENCE · 02',
@@ -130,7 +130,7 @@ const personalityInfo = {
   },
   Vibrant: {
     name: 'The Vibrant',
-    imageUrl: 'https://lh3.googleusercontent.com/d/1H2vSQ-eS8QbW13PXLQBgvrv5Bnb5nX2T',
+    imageUrl: 'https://lh3.googleusercontent.com/d/11-yvC3GbrGSj9jPfl-bmRpfb6m5yL__7', // 👈 รูปใหม่
     description: 'คุณมีสีสันและให้ความสำคัญกับความสัมพันธ์และประสบการณ์ร่วมกัน'
   },
   Creative: {
@@ -145,7 +145,7 @@ const personalityInfo = {
   },
   Grounded: {
     name: 'The Grounded',
-    imageUrl: 'https://lh3.googleusercontent.com/d/1AQDUyp_xdUp-5ji4vRnsuXMgU4_bCxqz',
+    imageUrl: 'https://lh3.googleusercontent.com/d/1mCzdKGeGC6TTQTzNa93FrmrYJxxwZq9t', // 👈 รูปใหม่
     description: 'คุณชอบความมั่นคง มีแบบแผน และรู้สึกดีกับการเตรียมตัวให้พร้อม'
   }
 };

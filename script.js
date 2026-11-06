@@ -110,42 +110,42 @@ const teaQuestions = [
 const personalityInfo = {
   Restorer: {
     name: 'The Restorer',
-    imageUrl: 'https://lh3.googleusercontent.com/d/1pE4IdahDRGOummy_PEXxeT6rZZuKn8Bq',
+    imageUrl: 'https://lh3.googleusercontent.com/d/10nWvMAP32KaDg7m21xwCGf06YBf1ejRZ',
     description: 'คุณให้ความสำคัญกับการพักใจและการกลับมาเชื่อมโยงกับตัวเอง'
   },
   Balanced: {
     name: 'The Balanced',
-    imageUrl: 'https://lh3.googleusercontent.com/d/1pE4IdahDRGOummy_PEXxeT6rZZuKn8Bq',
+    imageUrl: 'https://lh3.googleusercontent.com/d/13yK6UAP81x04nPkqSQLmUwRR4leWFERT',
     description: 'คุณมองหาความสมดุลและจังหวะชีวิตที่พอดีกับตัวเอง'
   },
   Explorer: {
     name: 'The Explorer',
-    imageUrl: 'https://lh3.googleusercontent.com/d/1pE4IdahDRGOummy_PEXxeT6rZZuKn8Bq',
+    imageUrl: 'https://lh3.googleusercontent.com/d/1GTdPU13baNpva1F0gH-hAHMDhcpzxdmN',
     description: 'คุณเปิดรับประสบการณ์ใหม่ ๆ และสนุกกับการค้นพบสิ่งรอบตัว'
   },
   GoGetter: {
     name: 'The Go-Getter',
-    imageUrl: 'https://lh3.googleusercontent.com/d/1pE4IdahDRGOummy_PEXxeT6rZZuKn8Bq',
+    imageUrl: 'https://lh3.googleusercontent.com/d/1XC4ky9cdoem7qm9s9nWLBBnGXyDCVD9J',
     description: 'คุณมีพลังในการลงมือทำและพร้อมเดินหน้าไปสู่เป้าหมาย'
   },
   Vibrant: {
     name: 'The Vibrant',
-    imageUrl: 'https://lh3.googleusercontent.com/d/1pE4IdahDRGOummy_PEXxeT6rZZuKn8Bq',
+    imageUrl: 'https://lh3.googleusercontent.com/d/1H2vSQ-eS8QbW13PXLQBgvrv5Bnb5nX2T',
     description: 'คุณมีสีสันและให้ความสำคัญกับความสัมพันธ์และประสบการณ์ร่วมกัน'
   },
   Creative: {
     name: 'The Creative',
-    imageUrl: 'https://lh3.googleusercontent.com/d/1pE4IdahDRGOummy_PEXxeT6rZZuKn8Bq',
+    imageUrl: 'https://lh3.googleusercontent.com/d/1wjx7Y5DTLajeSkHPf8dA68FDMlziedYT',
     description: 'คุณชอบจินตนาการ ทดลอง และมองเห็นความเป็นไปได้ใหม่ ๆ'
   },
   Gentle: {
     name: 'The Gentle',
-    imageUrl: 'https://lh3.googleusercontent.com/d/1pE4IdahDRGOummy_PEXxeT6rZZuKn8Bq',
+    imageUrl: 'https://lh3.googleusercontent.com/d/1H5Ah-Xfq6YoXGTjqdTxl988JrzJmuTH6',
     description: 'คุณให้คุณค่ากับความอ่อนโยนและการใช้ชีวิตอย่างไม่กดดันตัวเอง'
   },
   Grounded: {
     name: 'The Grounded',
-    imageUrl: 'https://lh3.googleusercontent.com/d/1pE4IdahDRGOummy_PEXxeT6rZZuKn8Bq',
+    imageUrl: 'https://lh3.googleusercontent.com/d/1AQDUyp_xdUp-5ji4vRnsuXMgU4_bCxqz',
     description: 'คุณชอบความมั่นคง มีแบบแผน และรู้สึกดีกับการเตรียมตัวให้พร้อม'
   }
 };

@@ -98,7 +98,7 @@ const teaQuestions = [
   {
     category: 'TEA PREFERENCE · 04',
     question: 'เครื่องดื่มแบบไหนดึงดูดคุณมากที่สุด?',
-    options: ['รสนุ่มนวลและเบาสบาย', 'สดชื่นและมีรสชาติสดใส', 'รสเข้มและให้ความรู้สึกอบอุ่น', 'สีสันสวยงามและแปลกใหม่']
+    options: ['รสนุ่มนวล ดื่มง่าย' , 'รสอมเปรี้ยวอมหวาน จิบแล้วสดชื่น', 'รสเข้มและให้ความรู้สึกอบอุ่น', 'สีสันสวยงามและแปลกใหม่']
   },
   {
     category: 'TEA PREFERENCE · 05',
@@ -352,7 +352,7 @@ async function finishReview() {
 
     setTimeout(() => {
       showAssessmentPopup();
-    }, 9500);
+    }, 11000);
 
     try {
       const saved = await saveCurrentTeaMatchResult(result);

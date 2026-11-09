@@ -352,7 +352,7 @@ async function finishReview() {
 
     setTimeout(() => {
       showAssessmentPopup();
-    }, 8500);
+    }, 9500);
 
     try {
       const saved = await saveCurrentTeaMatchResult(result);

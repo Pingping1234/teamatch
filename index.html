@@ -8,6 +8,17 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- 🟢 ย้ายปุ่มเปิด/ปิดเพลงมาไว้ด้านบนสุด เพื่อให้ลอยเหนือทุก Element -->
+  <button id="bgmToggleBtn" class="bgm-btn" onclick="toggleBGM()" title="เปิด/ปิด เสียงเพลง">
+    <span id="bgmIcon">🎵</span>
+  </button>
+
+  <!-- 🟢 แท็กไฟล์เสียงเพลง BGM -->
+  <audio id="bgmAudio" loop preload="auto">
+    <source src="https://assets.mixkit.co/music/preview/mixkit-relaxing-green-tea-131.mp3" type="audio/mpeg">
+  </audio>
+
   <main class="app-shell">
     <div class="storybook-frame">
 
@@ -111,8 +122,6 @@
         </button>
       </section>
 
-      <!-- 🆕 หน้ากรอกชื่อและอีเมล -->
-     <!-- หน้ากรอกชื่อและอีเมล (ปรับปรุง Accessibility & Autofill แล้ว) -->
       <section id="user-info" class="screen welcome-screen">
         <div class="welcome-illustration" aria-hidden="true">📝</div>
         <p class="eyebrow">ABOUT YOU</p>
@@ -308,15 +317,7 @@
       <div class="bottom-garland">✿ ───── ♡ ── ❀ ── ♡ ───── ✿</div>
     </div>
   </main>
-<!-- ปุ่มเปิด/ปิดเสียงเพลง (ลอยอยู่ที่มุมขวาบน) -->
-<button id="bgmToggleBtn" class="bgm-btn" onclick="toggleBGM()" title="เปิด/ปิด เสียงเพลง">
-  <span id="bgmIcon">🎵</span>
-</button>
 
-<!-- แท็กไฟล์เสียง -->
-<audio id="bgmAudio" loop preload="auto">
-  <source src="https://assets.mixkit.co/music/preview/mixkit-relaxing-green-tea-131.mp3" type="audio/mpeg">
-</audio>
   <script src="script.js"></script>
 </body>
 </html>

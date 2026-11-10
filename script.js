@@ -5,7 +5,7 @@ let userData = {
   email: ''
 };
 
-// 🟢 แก้ไข: ใส่ event.preventDefault() ป้องกันหน้าเว็บรีเฟรชตอนกดส่งชื่อ
+// ป้องกันหน้าเว็บรีเฟรชตอนกดส่งชื่อ
 function saveUserInfo(event) {
   if (event) event.preventDefault();
   
@@ -28,82 +28,82 @@ const teaQuestions = [
   {
     category: 'PERSONALITY · 01',
     question: 'หลังจากวันที่เหนื่อยมาก ๆ คุณอยากใช้เวลาที่เหลือแบบไหน?',
-    options: ['อยู่เงียบ ๆ คนเดียว', 'คุยกับเพื่อน', 'ทำงานอดิเรก', 'ออกไปข้างนอกหรือทำกิจกรรม']
+    options: ['อยู่เงียบ ๆ คนเดียวในพื้นที่ส่วนตัว', 'คุยกับเพื่อน หาของอร่อยกินกัน', 'ทำกิจกรรมหรืองานอดิเรกที่ชอบ', 'ออกไปข้างนอก เปิดรับสิ่งใหม่ๆ']
   },
   {
     category: 'PERSONALITY · 02',
     question: 'เมื่อเจอปัญหายาก ๆ คุณมักรับมืออย่างไร?',
-    options: ['คิดทบทวนเงียบ ๆ', 'ขอคำแนะนำจากคนอื่น', 'วางแผนเป็นขั้นตอน', 'ลงมือแก้ปัญหาทันที']
+    options: ['ค่อย ๆ คิดทบทวนและตกผลึกกับตัวเอง', 'พูดคุยขอคำแนะนำจากคนรอบข้าง', 'วางแผนแก้ปัญหาเป็นขั้นตอนชัดเจน', 'ลงมือแก้ปัญหาทันที ปรับเปลี่ยนตามสถานการณ์']
   },
   {
     category: 'PERSONALITY · 03',
     question: 'วันหยุดในอุดมคติของคุณเป็นแบบไหน?',
-    options: ['อยู่บ้านพักผ่อน', 'ออกไปเที่ยวกับเพื่อน', 'สำรวจสถานที่ใหม่', 'ทำโปรเจกต์ส่วนตัว']
+    options: ['พักผ่อนอยู่บ้านชิล ๆ', 'นัดเจอเพื่อน เที่ยวทำกิจกรรม', 'ออกไปสำรวจสถานที่ใหม่ ๆ', 'ลองทำโปรเจกต์ใหม่ ๆ ที่สนใจ']
   },
   {
     category: 'PERSONALITY · 04',
-    question: 'ข้อไหนอธิบายตัวคุณได้ดีที่สุด?',
-    options: ['ใจเย็นและชอบคิดทบทวน', 'เป็นมิตรและแสดงออกเก่ง', 'อยากรู้อยากเห็นและชอบผจญภัย', 'มีระเบียบและรับผิดชอบ']
+    question: 'ข้อไหนอธิบายความเป็นคุณได้ดีที่สุด?',
+    options: ['ใจเย็น นุ่มนวล สบาย ๆ', 'เป็นมิตร เข้ากับคนง่าย แสดงออกเก่ง', 'อยากรู้อยากเห็น ชอบความท้าทาย', 'มุ่งมั่น มีระเบียบและรับผิดชอบสูง']
   },
   {
     category: 'PERSONALITY · 05',
     question: 'เมื่อมี Deadline คุณมักทำอย่างไร?',
-    options: ['เริ่มลงมือทำทันทีตั้งแต่เนิ่น ๆ', 'วางแผนและค่อย ๆ ทำตามตารางที่จัดไว้', 'รอนึกไอเดียออก แล้วค่อยเร่งทำใกล้ถึงกำหนด', 'คิดหาวิธีแก้ปัญหาอย่างสร้างสรรค์']
+    options: ['เริ่มลงมือทำทันทีตั้งแต่เนิ่น ๆ', 'ทำตามตารางและกิจวัตรที่วางไว้', 'เร่งทำอย่างเต็มที่ใกล้กำหนด', 'คิดหาวิธีแก้ปัญหาอย่างสร้างสรรค์']
   },
   {
     category: 'PERSONALITY · 06',
     question: 'ถ้ามีคนชวนไปสถานที่ใหม่แบบกะทันหัน คุณจะ...',
-    options: ['ขอเวลาคิดก่อน', 'สนใจและอยากลองทันที', 'อยากรู้ก่อนว่าใครไปบ้าง', 'ถามรายละเอียดแผนก่อน']
+    options: ['ขอเวลาคิดทบทวนก่อน', 'สนใจทันทีและพร้อมออกเดินทาง', 'ถามรายละเอียดว่ามีใครไปบ้าง', 'เช็กตารางเวลาและแผนงานก่อน']
   },
   {
     category: 'LIFESTYLE · 01',
-    question: 'โดยปกติคุณนอนประมาณกี่ชั่วโมง?',
+    question: 'โดยปกติคุณนอนประมาณกี่ชั่วโมงต่อคืน?',
     options: ['น้อยกว่า 6 ชั่วโมง', '6–7 ชั่วโมง', '7–9 ชั่วโมง', 'มากกว่า 9 ชั่วโมง']
   },
   {
     category: 'LIFESTYLE · 02',
-    question: 'ตารางเวลานอนของคุณสม่ำเสมอแค่ไหน?',
-    options: ['สม่ำเสมอมาก', 'ค่อนข้างสม่ำเสมอ', 'เปลี่ยนไปตามแต่ละวัน', 'ไม่ค่อยแน่นอน']
+    question: 'ตารางการนอนของคุณสม่ำเสมอแค่ไหน?',
+    options: ['สม่ำเสมอมาก เข้านอนและตื่นเวลาเดิม', 'ค่อนข้างสม่ำเสมอ ยืดหยุ่นเล็กน้อย', 'ไม่แน่นอน เปลี่ยนไปตามแต่ละวัน', 'เปลี่ยนแปลงตลอดเวลา']
   },
   {
     category: 'LIFESTYLE · 03',
     question: 'คุณออกกำลังกายบ่อยแค่ไหน?',
-    options: ['ไม่ค่อยออกกำลังกาย', '1–2 ครั้งต่อสัปดาห์', '3–4 ครั้งต่อสัปดาห์', '5 ครั้งขึ้นไปต่อสัปดาห์']
+    options: ['ไม่ค่อยได้ออกกำลังกาย', '1–2 ครั้งต่อสัปดาห์', '3–4 ครั้งต่อสัปดาห์', '5 ครั้งขึ้นไปต่อสัปดาห์']
   },
   {
     category: 'LIFESTYLE · 04',
-    question: 'คุณรู้สึกว่าความเครียดในแต่ละวันเป็นอย่างไร?',
-    options: ['โดยทั่วไปเครียดน้อย', 'เครียดเป็นบางครั้ง', 'เครียดค่อนข้างบ่อย', 'เครียดมาก']
+    question: 'คุณรู้สึกว่าความเครียดในชีวิตประจำวันเป็นอย่างไร?',
+    options: ['เครียดน้อย ค่อนข้างผ่อนคลาย', 'เครียดปานกลาง แต่รับมือได้', 'เครียดค่อนข้างบ่อย มีเรื่องให้คิดตลอด', 'เครียดสูงมาก รู้สึกเหนื่อยล้า']
   },
   {
     category: 'LIFESTYLE · 05',
     question: 'วันปกติของคุณมีลักษณะอย่างไร?',
-    options: ['ยุ่งและมีสิ่งที่ต้องทำตลอด', 'เป็นระเบียบเรียบร้อย ทำตามแผน', 'ยืดหยุ่นและเปลี่ยนแปลงตลอด', 'ดำเนินไปอย่างช้า ๆ และผ่อนคลาย']
+    options: ['ยุ่งและมีสิ่งที่ต้องทำตลอดเวลา', 'มีโครงสร้างและเป็นระเบียบเรียบร้อย', 'ยืดหยุ่น ปรับเปลี่ยนตามสถานการณ์', 'ดำเนินไปอย่างช้า ๆ และผ่อนคลาย']
   },
   {
     category: 'TEA PREFERENCE · 01',
-    question: 'รสชาติแบบไหนฟังดูน่าลองที่สุด?',
-    options: ['กลมกล่อมและหอมอ่อน ๆ', 'สดชื่นและเปรี้ยวเล็กน้อย', 'อุ่นและมีรสเผ็ดจากเครื่องเทศ', 'สดชื่นและมีกลิ่นสมุนไพร']
+    question: 'รสชาติชาแบบไหนที่คุณคิดว่าน่าลองที่สุด?',
+    options: ['กลิ่นหอมอ่อน ๆ รสนุ่มนวล', 'สดชื่น อมเปรี้ยวอมหวาน', 'รสเข้มข้น อุ่น มีกลิ่นเครื่องเทศ', 'สดชื่น มีกลิ่นสมุนไพรแปลกใหม่']
   },
   {
     category: 'TEA PREFERENCE · 02',
-    question: 'คุณมักจะดื่มชาสมุนไพรช่วงไหน?',
-    options: ['ช่วงเย็นที่เงียบสงบ', 'ระหว่างวัน', 'ในวันที่มีกิจกรรมเยอะ', 'ระหว่างเรียนหรือทำงาน']
+    question: 'คุณมักจะชอบดื่มชาในช่วงเวลาไหนมากกว่ากัน?',
+    options: ['ช่วงเย็นที่เงียบสงบ เพื่อผ่อนคลาย', 'ระหว่างวัน เพื่อเติมความสดชื่น', 'ในวันที่มีกิจกรรมแน่น เพื่อเพิ่มพลัง', 'ระหว่างเรียนหรือทำงาน เพื่อเพิ่มสมาธิ']
   },
   {
     category: 'TEA PREFERENCE · 03',
-    question: 'คุณเปิดรับอาหารและเครื่องดื่มใหม่ ๆ มากแค่ไหน?',
-    options: ['ชอบลองสิ่งใหม่มาก', 'ลองของใหม่เป็นบางครั้ง', 'มักเลือกสิ่งที่คุ้นเคย', 'ชอบสิ่งที่คุ้นเคยเป็นพิเศษ']
+    question: 'คุณเปิดรับเครื่องดื่มรสชาติใหม่ ๆ มากแค่ไหน?',
+    options: ['ชอบลองสิ่งใหม่ ๆ มาก ตื่นเต้นเสมอ', 'เปิดใจลอง ถ้าดูน่าสนใจ', 'ขอคิดดูก่อน ชอบรสชาติที่คุ้นเคยมากกว่า', 'เลือกเฉพาะรสชาติที่ชอบและคุ้นเคยเท่านั้น']
   },
   {
     category: 'TEA PREFERENCE · 04',
-    question: 'เครื่องดื่มแบบไหนดึงดูดคุณมากที่สุด?',
-    options: ['รสนุ่มนวล ดื่มง่าย' , 'รสอมเปรี้ยวอมหวาน จิบแล้วสดชื่น', 'รสเข้มและให้ความรู้สึกอบอุ่น', 'สีสันสวยงามและแปลกใหม่']
+    question: 'เครื่องดื่มแบบไหนดึงดูดใจคุณมากที่สุด?',
+    options: ['รสละมุน ดื่มง่าย สบายท้อง', 'รสอมเปรี้ยวอมหวาน จิบแล้วสดชื่น', 'รสเข้มข้น หอมกลิ่นเครื่องเทศ อุ่นสบาย', 'สีสันสวยแปลกตา มีเอกลักษณ์ไม่ซ้ำใคร']
   },
   {
     category: 'TEA PREFERENCE · 05',
-    question: 'การมี Routine ที่ดีสำคัญกับคุณแค่ไหน?',
-    options: ['สำคัญมาก', 'สำคัญอยู่บ้าง', 'ชอบความยืดหยุ่นมากกว่า', 'ส่วนใหญ่ทำตามความรู้สึกของตัวเอง']
+    question: 'การมี Routine ที่ดีสำคัญต่อการใช้ชีวิตของคุณแค่ไหน?',
+    options: ['สำคัญมาก ช่วยให้ชีวิตมีระเบียบ', 'สำคัญปานกลาง ปรับเปลี่ยนได้ตามความเหมาะสม', 'ไม่ค่อยสำคัญ ชอบความยืดหยุ่นมากกว่า', 'ทำตามอารมณ์และความรู้สึกในแต่ละวัน']
   }
 ];
 
@@ -151,28 +151,44 @@ const personalityInfo = {
 };
 
 const personalityKeys = ['Restorer', 'Balanced', 'Explorer', 'GoGetter', 'Vibrant', 'Creative', 'Gentle', 'Grounded'];
-const tieBreakOrder = ['Restorer', 'Balanced', 'Explorer', 'GoGetter', 'Vibrant', 'Creative', 'Gentle', 'Grounded'];
 
+// 🟢 ตารางโบนัสคะแนนฉบับปรับสมดุลใหม่ (Balanced Matrix)
 const personalityBonus = [
-  [{Restorer:2, Gentle:2, Balanced:1}, {Vibrant:2, Balanced:1, Gentle:1}, {Creative:2, Restorer:1, Balanced:1}, {Explorer:2, GoGetter:1, Vibrant:1}],
-  [{Restorer:2, Balanced:1, Gentle:1}, {Vibrant:2, Balanced:1, Gentle:1}, {Grounded:2, Balanced:2}, {GoGetter:2, Explorer:1, Creative:1}],
-  [{Restorer:2, Gentle:2}, {Vibrant:2, Explorer:1}, {Explorer:2, Creative:1}, {Creative:2, Grounded:1}],
-  [{Restorer:2, Gentle:2}, {Vibrant:2, Creative:1}, {Explorer:2, Creative:1}, {Grounded:2, Balanced:2}],
-  [{Grounded:2, Balanced:1}, {Balanced:2, Grounded:1}, {GoGetter:2, Explorer:1}, {Creative:2, GoGetter:1}],
-  [{Restorer:2, Gentle:1, Balanced:1}, {Explorer:2, Vibrant:1}, {Vibrant:2, Gentle:1}, {Grounded:2, Balanced:1}],
-  [{Restorer:1, GoGetter:1}, {Balanced:1, Grounded:1}, {Balanced:2, Gentle:1}, {Gentle:2, Restorer:1}],
-  [{Grounded:2, Balanced:1}, {Balanced:2, Gentle:1}, {Creative:1, Explorer:1, Balanced:1}, {Explorer:1, Creative:1, Restorer:1}],
-  [{Gentle:2, Restorer:1}, {Balanced:2, Gentle:1}, {Explorer:2, Balanced:1}, {Explorer:2, GoGetter:2}],
-  [{Gentle:2, Balanced:1}, {Balanced:2, Grounded:1}, {Restorer:2, Gentle:1}, {Restorer:2, Gentle:2}],
-  [{GoGetter:2, Explorer:1}, {Grounded:2, Balanced:1}, {Explorer:2, Creative:1}, {Gentle:2, Restorer:1}],
-  [{Gentle:2}, {Vibrant:2}, {GoGetter:2}, {Explorer:2}],
-  [{Restorer:2, Gentle:2}, {Balanced:2, Vibrant:1}, {Explorer:2, GoGetter:1}, {Grounded:2, Creative:1}],
-  [{Creative:2, Explorer:2}, {Balanced:1, Creative:1}, {Grounded:1, Gentle:1}, {Grounded:2, Gentle:2}],
-  [{Gentle:2, Restorer:2}, {Vibrant:2, Explorer:1}, {GoGetter:2, Grounded:1}, {Creative:2, Explorer:1}],
-  [{Grounded:2, Balanced:2}, {Balanced:2, Gentle:1}, {Explorer:2, Creative:1}, {Gentle:2, Creative:1}]
+  // Q1
+  [{ Restorer: 2, Gentle: 1 }, { Vibrant: 2, Balanced: 1 }, { Creative: 2, Restorer: 1 }, { Explorer: 2, GoGetter: 1 }],
+  // Q2
+  [{ Restorer: 2, Grounded: 1 }, { Vibrant: 2, Gentle: 1 }, { Grounded: 2, Balanced: 1 }, { GoGetter: 2, Explorer: 1 }],
+  // Q3
+  [{ Restorer: 2, Gentle: 1 }, { Vibrant: 2, Explorer: 1 }, { Explorer: 2, Creative: 1 }, { Creative: 2, GoGetter: 1 }],
+  // Q4
+  [{ Gentle: 2, Restorer: 1 }, { Vibrant: 2, Balanced: 1 }, { Explorer: 2, Creative: 1 }, { Grounded: 2, GoGetter: 1 }],
+  // Q5
+  [{ Grounded: 2, GoGetter: 1 }, { Balanced: 2, Grounded: 1 }, { GoGetter: 2, Explorer: 1 }, { Creative: 2, GoGetter: 1 }],
+  // Q6
+  [{ Restorer: 2, Gentle: 1 }, { Explorer: 2, Creative: 1 }, { Vibrant: 2, Gentle: 1 }, { Grounded: 2, Balanced: 1 }],
+  // Q7
+  [{ GoGetter: 2, Explorer: 1 }, { Balanced: 2, GoGetter: 1 }, { Gentle: 2, Balanced: 1 }, { Restorer: 2, Gentle: 1 }],
+  // Q8
+  [{ Grounded: 2, Balanced: 1 }, { Balanced: 2, Grounded: 1 }, { Explorer: 1, Vibrant: 1 }, { Creative: 2, Explorer: 1 }],
+  // Q9
+  [{ Gentle: 2, Restorer: 1 }, { Balanced: 2, Gentle: 1 }, { Balanced: 2, GoGetter: 1 }, { GoGetter: 2, Explorer: 2 }],
+  // Q10
+  [{ Gentle: 2, Balanced: 1 }, { Balanced: 2, Gentle: 1 }, { Restorer: 2, Balanced: 1 }, { Restorer: 2, Grounded: 1 }],
+  // Q11
+  [{ GoGetter: 2, Vibrant: 1 }, { Grounded: 2, Balanced: 1 }, { Explorer: 2, Creative: 1 }, { Gentle: 2, Restorer: 1 }],
+  // Q12
+  [{ Gentle: 2, Restorer: 1 }, { Vibrant: 2, Explorer: 1 }, { GoGetter: 2, Grounded: 1 }, { Explorer: 2, Creative: 1 }],
+  // Q13
+  [{ Restorer: 2, Gentle: 1 }, { Balanced: 2, Vibrant: 1 }, { Explorer: 2, GoGetter: 1 }, { Grounded: 2, GoGetter: 1 }],
+  // Q14
+  [{ Creative: 2, Explorer: 2 }, { Vibrant: 1, Balanced: 1 }, { Balanced: 1, Grounded: 1 }, { Grounded: 2, Gentle: 1 }],
+  // Q15
+  [{ Gentle: 2, Restorer: 1 }, { Vibrant: 2, Explorer: 1 }, { GoGetter: 2, Grounded: 1 }, { Creative: 2, Explorer: 1 }],
+  // Q16
+  [{ Grounded: 2, Balanced: 2 }, { Balanced: 2, Grounded: 1 }, { Explorer: 2, Vibrant: 1 }, { Creative: 2, Explorer: 1 }]
 ];
 
-// 🟢 จับคู่ Personality กับ ชาสมุนไพร
+// จับคู่ Personality กับ ชาสมุนไพร
 const teaHerbMap = {
   Restorer: 'ชาใบเตยกับใบบัวบก',
   Balanced: 'ชาใบบัวบกกับอัญชัน',
@@ -184,31 +200,56 @@ const teaHerbMap = {
   Grounded: 'ชาขมิ้นชันกับขิงและตะไคร้'
 };
 
+// 🟢 ฟังก์ชันคำนวณผลลัพธ์ TeaMatch พร้อมระบบ Tie-Break ฉบับปรับปรุง
 function calculateTeaMatch(answers) {
-  if (!Array.isArray(answers) || answers.length !== teaQuestions.length || answers.some(a => !Number.isInteger(a) || a < 0 || a > 3)) {
-    throw new Error('กรุณาตอบคำถามให้ครบทั้ง 16 ข้อ');
-  }
+  const scores = {
+    Restorer: 16,
+    Balanced: 16,
+    Explorer: 16,
+    GoGetter: 16,
+    Vibrant: 16,
+    Creative: 16,
+    Gentle: 16,
+    Grounded: 16
+  };
 
-  const scores = {};
-  personalityKeys.forEach(key => { scores[key] = 16; });
-
-  answers.forEach((answerIndex, questionIndex) => {
-    const bonus = personalityBonus[questionIndex][answerIndex];
-    Object.entries(bonus).forEach(([key, points]) => { scores[key] += points; });
+  answers.forEach((ansIndex, qIndex) => {
+    const bonusObj = personalityBonus[qIndex]?.[ansIndex];
+    if (bonusObj) {
+      for (const [pKey, pts] of Object.entries(bonusObj)) {
+        if (scores[pKey] !== undefined) {
+          scores[pKey] += pts;
+        }
+      }
+    }
   });
 
-  const highestScore = Math.max(...Object.values(scores));
-  const winner = tieBreakOrder.find(key => scores[key] === highestScore);
-  
-  // 🟢 ดึงชาตาม Personality
-  const herbPreference = teaHerbMap[winner] || 'ชาสมุนไพรสูตรพิเศษ';
+  // 🟢 ลำดับ Tie-Break ใหม่ (ดันตัวละครออกยากขึ้นมาอยู่อันดับต้น)
+  const priorityOrder = [
+    'GoGetter',
+    'Creative',
+    'Vibrant',
+    'Explorer',
+    'Grounded',
+    'Restorer',
+    'Balanced',
+    'Gentle'
+  ];
+
+  let highestPersonality = priorityOrder[0];
+  let maxScore = -1;
+
+  for (const pKey of priorityOrder) {
+    if (scores[pKey] > maxScore) {
+      maxScore = scores[pKey];
+      highestPersonality = pKey;
+    }
+  }
 
   return {
-    personalityKey: winner,
-    personality: personalityInfo[winner],
     scores: scores,
-    highestScore: highestScore,
-    herbPreference: herbPreference
+    resultKey: highestPersonality,
+    personality: personalityInfo[highestPersonality]
   };
 }
 

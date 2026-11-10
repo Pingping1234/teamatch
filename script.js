@@ -9,7 +9,6 @@ let currentQuestion = 0;
 let teaAnswers = Array(16).fill(null);
 let isBgmPlaying = false;
 
-// 🟢 1. ระบบเล่นและควบคุมเพลง BGM
 function toggleBGM() {
   const audio = document.getElementById('bgmAudio');
   const btn = document.getElementById('bgmToggleBtn');
@@ -20,22 +19,17 @@ function toggleBGM() {
   if (isBgmPlaying) {
     audio.pause();
     isBgmPlaying = false;
-    if (btn) {
-      btn.classList.remove('playing');
-      btn.classList.add('muted');
-    }
+    if (btn) btn.classList.add('muted');
     if (icon) icon.textContent = '🔇';
   } else {
-    audio.volume = 0.25;
+    audio.volume = 0.3; // ปรับระดับความดัง 30%
     audio.play().then(() => {
       isBgmPlaying = true;
-      if (btn) {
-        btn.classList.add('playing');
-        btn.classList.remove('muted');
-      }
+      if (btn) btn.classList.remove('muted');
       if (icon) icon.textContent = '🎵';
     }).catch(err => {
-      console.log('Autoplay prevented by browser:', err);
+      console.log('Autoplay blocked by browser:', err);
+      alert('กรุณากดปุ่ม 🎵 ที่มุมขวาบนเพื่อเปิดเสียงเพลงนะครับ');
     });
   }
 }

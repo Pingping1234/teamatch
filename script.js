@@ -22,14 +22,13 @@ function toggleBGM() {
     if (btn) btn.classList.add('muted');
     if (icon) icon.textContent = '🔇';
   } else {
-    audio.volume = 0.3; // ปรับระดับความดัง 30%
+    audio.volume = 0.25; // ปรับระดับความดัง 25% ให้คลอเบาๆ
     audio.play().then(() => {
       isBgmPlaying = true;
       if (btn) btn.classList.remove('muted');
       if (icon) icon.textContent = '🎵';
     }).catch(err => {
-      console.log('Autoplay blocked by browser:', err);
-      alert('กรุณากดปุ่ม 🎵 ที่มุมขวาบนเพื่อเปิดเสียงเพลงนะครับ');
+      console.log('Autoplay prevented by browser:', err);
     });
   }
 }

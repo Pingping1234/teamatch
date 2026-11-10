@@ -5,7 +5,51 @@ let userData = {
   email: ''
 };
 
-// 🟢 ป้องกันหน้าเว็บรีเฟรชตอนกดส่งชื่อ
+let currentQuestion = 0;
+let teaAnswers = Array(16).fill(null);
+let isBgmPlaying = false;
+
+// 🟢 1. ระบบเล่นและควบคุมเพลง BGM
+function toggleBGM() {
+  const audio = document.getElementById('bgmAudio');
+  const btn = document.getElementById('bgmToggleBtn');
+  const icon = document.getElementById('bgmIcon');
+
+  if (!audio) return;
+
+  if (isBgmPlaying) {
+    audio.pause();
+    isBgmPlaying = false;
+    if (btn) {
+      btn.classList.remove('playing');
+      btn.classList.add('muted');
+    }
+    if (icon) icon.textContent = '🔇';
+  } else {
+    audio.volume = 0.25;
+    audio.play().then(() => {
+      isBgmPlaying = true;
+      if (btn) {
+        btn.classList.add('playing');
+        btn.classList.remove('muted');
+      }
+      if (icon) icon.textContent = '🎵';
+    }).catch(err => {
+      console.log('Autoplay prevented by browser:', err);
+    });
+  }
+}
+
+// 🟢 2. ระบบสลับหน้าจอ (Navigation)
+function showScreen(screenId) {
+  const nextScreen = document.getElementById(screenId);
+  if (!nextScreen) return;
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  nextScreen.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// 🟢 3. บันทึกชื่อ-อีเมล
 function saveUserInfo(event) {
   if (event) event.preventDefault();
   
@@ -24,7 +68,18 @@ function saveUserInfo(event) {
   return false;
 }
 
-// 🟢 ชุดคำถามและตัวเลือกเดิมตามที่คุณกำหนด
+// 🟢 4. ฟังก์ชันเริ่มทำควิซ (แก้ไขปัญหาเริ่มควิซไม่ได้ + เปิดเพลง BGM อัตโนมัติ)
+function startQuiz() {
+  if (!isBgmPlaying) {
+    toggleBGM();
+  }
+  currentQuestion = 0;
+  teaAnswers.fill(null);
+  renderQuestion();
+  showScreen('quiz');
+}
+
+// 🟢 5. ชุดคำถามและตัวเลือกคำตอบ 16 ข้อ
 const teaQuestions = [
   {
     category: 'PERSONALITY · 01',
@@ -152,11 +207,8 @@ const personalityInfo = {
 };
 
 const personalityKeys = ['Restorer', 'Balanced', 'Explorer', 'GoGetter', 'Vibrant', 'Creative', 'Gentle', 'Grounded'];
-
-// 🟢 ปรับ Tie-Break ดันบุคลิกที่ออกยากขึ้นมาอยู่อันดับต้นๆ
 const tieBreakOrder = ['GoGetter', 'Creative', 'Vibrant', 'Explorer', 'Grounded', 'Restorer', 'Balanced', 'Gentle'];
 
-// 🟢 ตารางโบนัสคะแนนแบบปรับสมดุล
 const personalityBonus = [
   [{ Restorer: 2, Gentle: 1 }, { Vibrant: 2, Balanced: 1 }, { Creative: 2, Restorer: 1 }, { Explorer: 2, GoGetter: 1 }],
   [{ Restorer: 2, Grounded: 1 }, { Vibrant: 2, Gentle: 1 }, { Grounded: 2, Balanced: 1 }, { GoGetter: 2, Explorer: 1 }],
@@ -176,7 +228,6 @@ const personalityBonus = [
   [{ Grounded: 2, Balanced: 2 }, { Balanced: 2, Grounded: 1 }, { Explorer: 2, Vibrant: 1 }, { Creative: 2, Explorer: 1 }]
 ];
 
-// 🟢 จับคู่ Personality กับ ชาสมุนไพร
 const teaHerbMap = {
   Restorer: 'ชาใบเตยกับใบบัวบก',
   Balanced: 'ชาใบบัวบกกับอัญชัน',
@@ -188,102 +239,7 @@ const teaHerbMap = {
   Grounded: 'ชาขมิ้นชันกับขิงและตะไคร้'
 };
 
-// 🟢 ฟังก์ชันคำนวณและส่งข้อมูลลง Google Sheets ให้ตรงตามหัวชีท 100%
-function calculateTeaMatch(userAnswers) {
-  const scores = {
-    Restorer: 16,
-    Balanced: 16,
-    Explorer: 16,
-    GoGetter: 16,
-    Vibrant: 16,
-    Creative: 16,
-    Gentle: 16,
-    Grounded: 16
-  };
-
-  userAnswers.forEach((ansIndex, qIndex) => {
-    const bonusObj = personalityBonus[qIndex]?.[ansIndex];
-    if (bonusObj) {
-      for (const [pKey, pts] of Object.entries(bonusObj)) {
-        if (scores[pKey] !== undefined) {
-          scores[pKey] += pts;
-        }
-      }
-    }
-  });
-
-  let highestPersonality = tieBreakOrder[0];
-  let maxScore = -1;
-
-  for (const pKey of tieBreakOrder) {
-    if (scores[pKey] > maxScore) {
-      maxScore = scores[pKey];
-      highestPersonality = pKey;
-    }
-  }
-
-  const selectedHerb = teaHerbMap[highestPersonality] || '';
-
-  // 🟢 จัดเตรียม Payload ให้ตรงกับฟิลด์ของ Google Sheets App Script
-  const payloadData = {
-    participant_name: userData.name,
-    participant_email: userData.email,
-    // แปลงคำตอบ 16 ข้อ เป็นข้อความ A, B, C, D
-    ...userAnswers.reduce((acc, ansIdx, i) => {
-      const qKey = `q${String(i + 1).padStart(2, '0')}`;
-      acc[qKey] = String.fromCharCode(65 + ansIdx); 
-      return acc;
-    }, {}),
-    // คะแนนย่อยทั้ง 8 บุคลิก
-    score_restorer: scores.Restorer,
-    score_balanced: scores.Balanced,
-    score_explorer: scores.Explorer,
-    score_go_getter: scores.GoGetter,
-    score_vibrant: scores.Vibrant,
-    score_creative: scores.Creative,
-    score_gentle: scores.Gentle,
-    score_grounded: scores.Grounded,
-    // สรุปผลลัพธ์ตัวละครและชาที่เหมาะสม
-    personality_result: personalityInfo[highestPersonality]?.name || highestPersonality,
-    herb_preference: selectedHerb
-  };
-
-  // ส่งข้อมูลไปบันทึกที่ Google Apps Script
-  if (GAS_WEB_APP_URL) {
-    fetch(GAS_WEB_APP_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payloadData)
-    }).catch(err => console.log('Error sending data to GAS:', err));
-  }
-
-  return {
-    scores: scores,
-    resultKey: highestPersonality,
-    personality: personalityInfo[highestPersonality],
-    herbPreference: selectedHerb
-  };
-}
-
-let currentQuestion = 0;
-let teaAnswers = Array(teaQuestions.length).fill(null);
-
-function showScreen(screenId) {
-  const nextScreen = document.getElementById(screenId);
-  if (!nextScreen) return;
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  nextScreen.classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function startQuiz() {
-  currentQuestion = 0;
-  teaAnswers.fill(null);
-  renderQuestion();
-  showScreen('quiz');
-}
-
+// 🟢 6. แสดงผลคำถามในหน้าควิซ
 function renderQuestion() {
   const q = teaQuestions[currentQuestion];
   const selected = teaAnswers[currentQuestion];
@@ -349,10 +305,11 @@ function previousQuestion() {
     currentQuestion--;
     renderQuestion();
   } else {
-    showScreen('user-info'); // 🟢 ย้อนกลับมาหน้ากรอกชื่อถูกต้อง
+    showScreen('user-info');
   }
 }
 
+// 🟢 7. หน้าตรวจคำตอบ
 function renderReview() {
   const list = document.getElementById('reviewList');
   list.replaceChildren();
@@ -390,6 +347,50 @@ function editLastAnswer() {
   showScreen('quiz');
 }
 
+// 🟢 8. คำนวณคะแนนและบันทึกลง Google Sheets
+function calculateTeaMatch(userAnswers) {
+  const scores = {
+    Restorer: 16,
+    Balanced: 16,
+    Explorer: 16,
+    GoGetter: 16,
+    Vibrant: 16,
+    Creative: 16,
+    Gentle: 16,
+    Grounded: 16
+  };
+
+  userAnswers.forEach((ansIndex, qIndex) => {
+    const bonusObj = personalityBonus[qIndex]?.[ansIndex];
+    if (bonusObj) {
+      for (const [pKey, pts] of Object.entries(bonusObj)) {
+        if (scores[pKey] !== undefined) {
+          scores[pKey] += pts;
+        }
+      }
+    }
+  });
+
+  let highestPersonality = tieBreakOrder[0];
+  let maxScore = -1;
+
+  for (const pKey of tieBreakOrder) {
+    if (scores[pKey] > maxScore) {
+      maxScore = scores[pKey];
+      highestPersonality = pKey;
+    }
+  }
+
+  const selectedHerb = teaHerbMap[highestPersonality] || '';
+
+  return {
+    scores: scores,
+    resultKey: highestPersonality,
+    personality: personalityInfo[highestPersonality],
+    herbPreference: selectedHerb
+  };
+}
+
 async function finishReview() {
   try {
     const result = calculateTeaMatch(teaAnswers);
@@ -408,25 +409,48 @@ async function finishReview() {
       showAssessmentPopup();
     }, 11000);
 
-    try {
-      const saved = await saveCurrentTeaMatchResult(result);
-      window.teaMatchCurrentResult = result;
-      window.teaMatchParticipantId = saved.participantId;
-
-      if (statusElem) {
-        statusElem.textContent = 'บันทึกผลของคุณเรียบร้อยแล้ว 🍵';
-      }
-    } catch (saveError) {
-      console.error('TeaMatch save error:', saveError);
-      if (statusElem) {
-        statusElem.textContent = 'ยังบันทึกข้อมูลไม่ได้: ' + saveError.message + ' กรุณาแจ้งผู้ดูแลระบบก่อนปิดหน้าเว็บ';
-      }
+    // ส่งข้อมูลลง Google Sheets
+    await saveCurrentTeaMatchResult(result);
+    if (statusElem) {
+      statusElem.textContent = 'บันทึกผลของคุณเรียบร้อยแล้ว 🍵';
     }
   } catch (error) {
-    alert(error.message || 'เกิดข้อผิดพลาดในการคำนวณคะแนน');
+    console.error('TeaMatch error:', error);
   }
 }
 
+async function saveCurrentTeaMatchResult(result) {
+  const payloadData = {
+    participant_name: userData.name,
+    participant_email: userData.email,
+    ...teaAnswers.reduce((acc, ansIdx, i) => {
+      const qKey = `q${String(i + 1).padStart(2, '0')}`;
+      acc[qKey] = String.fromCharCode(65 + ansIdx);
+      return acc;
+    }, {}),
+    score_restorer: result.scores.Restorer,
+    score_balanced: result.scores.Balanced,
+    score_explorer: result.scores.Explorer,
+    score_go_getter: result.scores.GoGetter,
+    score_vibrant: result.scores.Vibrant,
+    score_creative: result.scores.Creative,
+    score_gentle: result.scores.Gentle,
+    score_grounded: result.scores.Grounded,
+    personality_result: result.personality.name,
+    herb_preference: result.herbPreference
+  };
+
+  if (GAS_WEB_APP_URL) {
+    await fetch(GAS_WEB_APP_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payloadData)
+    });
+  }
+}
+
+// 🟢 9. ฟังก์ชันแชร์ และ Popup
 async function shareToInstagram() {
   const imgElement = document.getElementById('resultImage');
   if (!imgElement || !imgElement.src) {
@@ -461,33 +485,6 @@ async function shareToInstagram() {
   }
 }
 
-async function saveCurrentTeaMatchResult(result) {
-  const payload = {
-    name: userData.name,
-    email: userData.email,
-    answers: teaAnswers,
-    scores: result.scores,
-    personalityKey: result.personalityKey,
-    herbPreference: result.herbPreference
-  };
-
-  const response = await fetch(GAS_WEB_APP_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'text/plain;charset=utf-8',
-    },
-    body: JSON.stringify(payload)
-  });
-
-  const saved = await response.json();
-
-  if (!saved || !saved.success) {
-    throw new Error(saved.message || 'ระบบยังยืนยันการบันทึกไม่ได้');
-  }
-
-  return saved;
-}
-
 function showAssessmentPopup() {
   const popup = document.getElementById('assessmentPopup');
   if (popup) popup.style.display = 'flex';
@@ -497,43 +494,4 @@ function goToRequiredAssessment() {
   const popup = document.getElementById('assessmentPopup');
   if (popup) popup.style.display = 'none';
   showScreen('feedback');
-}
-let isBgmPlaying = false;
-
-// ฟังก์ชันสลับสถานะ เล่น / หยุด เสียงเพลง
-function toggleBGM() {
-  const audio = document.getElementById('bgmAudio');
-  const btn = document.getElementById('bgmToggleBtn');
-  const icon = document.getElementById('bgmIcon');
-
-  if (!audio) return;
-
-  if (isBgmPlaying) {
-    audio.pause();
-    isBgmPlaying = false;
-    btn.classList.remove('playing');
-    btn.classList.add('muted');
-    icon.textContent = '🔇';
-  } else {
-    audio.volume = 0.25; // ความดัง 25% ให้เปิดคลอเบาๆ
-    audio.play().then(() => {
-      isBgmPlaying = true;
-      btn.classList.add('playing');
-      btn.classList.remove('muted');
-      icon.textContent = '🎵';
-    }).catch(err => {
-      console.log('Autoplay prevented by browser:', err);
-    });
-  }
-}
-
-// 🟢 เรียกใช้ในฟังก์ชันตอนผู้ใช้กดเริ่มทำแบบทดสอบ (เช่น startQuiz)
-function startQuiz() {
-  // หากยังไม่ได้เปิดเพลง ให้เปิดเพลงคลอทันทีหลังมี User Click
-  if (!isBgmPlaying) {
-    toggleBGM();
-  }
-
-  // โค้ดเดิมสำหรับเปลี่ยนหน้าไปทำคำถาม...
-  showScreen('question-screen');
 }

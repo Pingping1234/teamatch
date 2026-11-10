@@ -485,3 +485,42 @@ function goToRequiredAssessment() {
   if (popup) popup.style.display = 'none';
   showScreen('feedback');
 }
+let isBgmPlaying = false;
+
+// ฟังก์ชันสลับสถานะ เล่น / หยุด เสียงเพลง
+function toggleBGM() {
+  const audio = document.getElementById('bgmAudio');
+  const btn = document.getElementById('bgmToggleBtn');
+  const icon = document.getElementById('bgmIcon');
+
+  if (!audio) return;
+
+  if (isBgmPlaying) {
+    audio.pause();
+    isBgmPlaying = false;
+    btn.classList.remove('playing');
+    btn.classList.add('muted');
+    icon.textContent = '🔇';
+  } else {
+    audio.volume = 0.25; // ความดัง 25% ให้เปิดคลอเบาๆ
+    audio.play().then(() => {
+      isBgmPlaying = true;
+      btn.classList.add('playing');
+      btn.classList.remove('muted');
+      icon.textContent = '🎵';
+    }).catch(err => {
+      console.log('Autoplay prevented by browser:', err);
+    });
+  }
+}
+
+// 🟢 เรียกใช้ในฟังก์ชันตอนผู้ใช้กดเริ่มทำแบบทดสอบ (เช่น startQuiz)
+function startQuiz() {
+  // หากยังไม่ได้เปิดเพลง ให้เปิดเพลงคลอทันทีหลังมี User Click
+  if (!isBgmPlaying) {
+    toggleBGM();
+  }
+
+  // โค้ดเดิมสำหรับเปลี่ยนหน้าไปทำคำถาม...
+  showScreen('question-screen');
+}
